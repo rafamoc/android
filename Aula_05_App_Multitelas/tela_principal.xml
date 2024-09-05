@@ -20,13 +20,19 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Meu Primeiro APP Multrati Telas " />
+            android:text="Meu Primeiro APP Multi Telas " />
 
         <Button
             android:id="@+id/btn_sobre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sobre o App" />
+
+        <Button
+            android:id="@+id/btn_pesquisa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pesquisa" />
 
         <Button
             android:id="@+id/btn_config"
