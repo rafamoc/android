@@ -39,7 +39,7 @@ class ConexaoDB(c: Context) : SQLiteOpenHelper(c, "MyApplicationDatabase.db", nu
 
     private fun copyDatabaseFromAssets(c: Context) {
         try {
-            val inputStream: InputStream = c.assets.open("MyAppDatabase.db")
+            val inputStream: InputStream = c.assets.open("MyApplicationDatabase.db")
             val outputFile: File = File(this.dbPath)
             val outputStream: OutputStream = FileOutputStream(outputFile)
 
