@@ -22,4 +22,17 @@ class Usuario(private val conexaoDB: ConexaoDB) {
 
         return nomes
     }
+
+    fun isValidUser(login: String, senha: String): Boolean {
+        val db = conexaoDB.readableDatabase
+        val cursor = db.rawQuery(
+            "SELECT * FROM TB_Usuario WHERE email = ? AND senha = ?",
+            arrayOf(login, senha)
+        )
+
+        val userExists = cursor.count > 0
+        cursor.close()
+        db.close()
+        return userExists
+    }
 }
