@@ -15,6 +15,7 @@ class TelaLoginActivity : AppCompatActivity() {
 
     private lateinit var conexaoDB: ConexaoDB
     private lateinit var usuario: Usuario
+    private lateinit var logger: Log
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +23,7 @@ class TelaLoginActivity : AppCompatActivity() {
 
         conexaoDB = ConexaoDB(this)
         usuario = Usuario(conexaoDB)
+        logger  = Log(conexaoDB)
 
         val btnLogin = findViewById<Button>(R.id.btnLogin)
 
@@ -40,11 +42,18 @@ class TelaLoginActivity : AppCompatActivity() {
 
         // Verifica se o usuário é válido
         if (usuario.isValidUser(login, senha)) {
+            // Gera um log de acesso bem sucedido
+            logger.logLoginAttempt(login, true)
+
+
             // Abre a TelaPrincipalActivity se o login for bem-sucedido
             val intent = Intent(this, ListaUsuariosActivity::class.java)
             startActivity(intent)
-            finish() // Finaliza a LoginActivity para que o usuário não possa voltar a ela com o botão "voltar"
+            finish()
         } else {
+            // Gera um log de acesso mrafaeal sucedido
+            logger.logLoginAttempt(login, false)
+
             // Exibe uma mensagem de erro se o login falhar
             Toast.makeText(this, "Login ou senha inválidos", Toast.LENGTH_SHORT).show()
         }
